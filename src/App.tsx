@@ -1,5 +1,7 @@
 import Text from "./components/text";
 import TrashIcon from "./assets/icons/Trash-Regular.svg?react";
+import SpinnerIcon from "./assets/icons/Spinner.svg?react";
+import Icon from "./components/icon";
 
 const App = () => {
   return (
@@ -11,7 +13,8 @@ const App = () => {
       </div>
 
       <div className="flex gap-1">
-        <TrashIcon className="fill-pink-base" />
+        <Icon svg={TrashIcon} className="fill-pink-base" />
+        <Icon svg={SpinnerIcon} animate className="fill-pink-base" />
       </div>
     </div>
   );
