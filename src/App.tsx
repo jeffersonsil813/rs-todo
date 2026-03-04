@@ -2,6 +2,7 @@ import Text from "./components/text";
 import TrashIcon from "./assets/icons/Trash-Regular.svg?react";
 import SpinnerIcon from "./assets/icons/Spinner.svg?react";
 import Icon from "./components/icon";
+import Badge from "./components/bagde";
 
 const App = () => {
   return (
@@ -15,6 +16,11 @@ const App = () => {
       <div className="flex gap-1">
         <Icon svg={TrashIcon} className="fill-pink-base" />
         <Icon svg={SpinnerIcon} animate className="fill-pink-base" />
+      </div>
+
+      <div>
+        <Badge variant={"secondary"}>5</Badge>
+        <Badge variant={"primary"}>2 de 5</Badge>
       </div>
     </div>
   );
