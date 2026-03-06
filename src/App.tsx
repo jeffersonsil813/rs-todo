@@ -1,8 +1,10 @@
-import Text from "./components/text";
-import TrashIcon from "./assets/icons/Trash-Regular.svg?react";
+import PLusIcon from "./assets/icons/Plus-Regular.svg?react";
 import SpinnerIcon from "./assets/icons/Spinner.svg?react";
-import Icon from "./components/icon";
+import TrashIcon from "./assets/icons/Trash-Regular.svg?react";
 import Badge from "./components/bagde";
+import Button from "./components/button";
+import Icon from "./components/icon";
+import Text from "./components/text";
 
 const App = () => {
   return (
@@ -21,6 +23,10 @@ const App = () => {
       <div>
         <Badge variant={"secondary"}>5</Badge>
         <Badge variant={"primary"}>2 de 5</Badge>
+      </div>
+
+      <div>
+        <Button icon={PLusIcon}>Nova tarefa</Button>
       </div>
     </div>
   );
