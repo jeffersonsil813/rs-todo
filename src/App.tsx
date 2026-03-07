@@ -5,11 +5,12 @@ import Badge from "./components/bagde";
 import Button from "./components/button";
 import ButtonIcon from "./components/button-icon";
 import Icon from "./components/icon";
+import InputText from "./components/input-text";
 import Text from "./components/text";
 
 const App = () => {
   return (
-    <div className="grid gap-3">
+    <div className="grid gap-10">
       <div className="flex flex-col gap-1">
         <Text variant="body-sm-bold" className="text-pink-base">
           Hello World!
@@ -34,6 +35,10 @@ const App = () => {
         <ButtonIcon icon={TrashIcon} />
         <ButtonIcon icon={PLusIcon} variant="secondary" />
         <ButtonIcon icon={SpinnerIcon} variant="tertiary" />
+      </div>
+
+      <div className="flex gap-1">
+        <InputText />
       </div>
     </div>
   );
