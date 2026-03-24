@@ -9,6 +9,7 @@ import Container from "./components/container";
 import Icon from "./components/icon";
 import InputCheckbox from "./components/input-checkbox";
 import InputText from "./components/input-text";
+import Skeleton from "./components/skeleton";
 import Text from "./components/text";
 
 const App = () => {
@@ -26,9 +27,10 @@ const App = () => {
           <Icon svg={SpinnerIcon} animate className="fill-pink-base" />
         </div>
 
-        <div>
+        <div className="flex gap-1">
           <Badge variant={"secondary"}>5</Badge>
           <Badge variant={"primary"}>2 de 5</Badge>
+          <Badge loading>8</Badge>
         </div>
 
         <div>
@@ -39,18 +41,26 @@ const App = () => {
           <ButtonIcon icon={TrashIcon} />
           <ButtonIcon icon={PLusIcon} variant="secondary" />
           <ButtonIcon icon={SpinnerIcon} variant="tertiary" />
+          <ButtonIcon icon={TrashIcon} loading />
         </div>
 
         <div className="flex gap-1">
           <InputText />
         </div>
 
-        <div>
+        <div className="flex gap-1">
           <InputCheckbox />
+          <InputCheckbox loading/>
         </div>
 
         <div>
           <Card size="md">Card teste</Card>
+        </div>
+
+        <div className="space-y-2">
+          <Skeleton className="h-6" />
+          <Skeleton className="h-6" />
+          <Skeleton className="h-6 w-96"/>
         </div>
       </div>
     </Container>
