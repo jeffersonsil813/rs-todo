@@ -4,6 +4,7 @@ import TrashIcon from "./assets/icons/Trash-Regular.svg?react";
 import Badge from "./components/bagde";
 import Button from "./components/button";
 import ButtonIcon from "./components/button-icon";
+import Card from "./components/card";
 import Icon from "./components/icon";
 import InputCheckbox from "./components/input-checkbox";
 import InputText from "./components/input-text";
@@ -44,6 +45,10 @@ const App = () => {
 
       <div>
         <InputCheckbox />
+      </div>
+
+      <div>
+        <Card size="md">Card teste</Card>
       </div>
     </div>
   );
