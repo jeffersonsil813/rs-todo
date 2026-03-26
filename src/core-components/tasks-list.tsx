@@ -1,15 +1,17 @@
 import PlusIcon from "../assets/icons/Plus-Regular.svg?react";
 import Button from "../components/button";
+import { useTask } from "../hooks/use-task";
 import { useTasks } from "../hooks/use-tasks";
 import TaskItem from "./task-item";
 
 const Taskslist = () => {
   const { tasks } = useTasks();
+  const { prepareTask } = useTask();
 
   return (
     <>
       <section>
-        <Button icon={PlusIcon} className="w-full">
+        <Button icon={PlusIcon} className="w-full" onClick={prepareTask}>
           Nova Tarefa
         </Button>
       </section>
