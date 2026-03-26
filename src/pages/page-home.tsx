@@ -1,5 +1,5 @@
 import Container from "../components/container";
-import TaskItem from "../core-components/task-item";
+import Taskslist from "../core-components/tasks-list";
 import TasksSummary from "../core-components/tasks-summary";
 
 const PageHome = () => {
@@ -9,7 +9,7 @@ const PageHome = () => {
         <TasksSummary />
       </header>
 
-      <TaskItem />
+      <Taskslist />
     </Container>
   );
 };
