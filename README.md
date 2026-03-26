@@ -2,6 +2,8 @@
 
 A modern, fast, and locally persistent task management app — built with React and Vite.
 
+🔗 **[Live Demo](https://rs-todo.vercel.app)**
+
 ---
 
 ## 📌 About the Project
