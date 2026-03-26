@@ -16,8 +16,8 @@ export const useTask = () => {
   };
 
   const updateTask = (id: string, payload: { title: Task["title"] }) => {
-    setTasks((prev) =>
-      (prev || []).map((task) =>
+    setTasks(
+      tasks.map((task) =>
         task.id === id
           ? { ...task, state: TaskState.CREATED, ...payload }
           : task,
@@ -25,8 +25,15 @@ export const useTask = () => {
     );
   };
 
+  const updateTaskStatus = (id: string, concluded: Task["concluded"]) => {
+    setTasks(
+      tasks.map((task) => (task.id === id ? { ...task, concluded } : task)),
+    );
+  };
+
   return {
     prepareTask,
     updateTask,
+    updateTaskStatus,
   };
 };
