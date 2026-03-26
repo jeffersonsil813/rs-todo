@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import { Outlet } from "react-router";
 import Footer from "../core-components/footer";
 import Header from "../core-components/header";
@@ -11,6 +12,7 @@ const LayoutMain = () => {
         <Outlet />
       </MainContent>
       <Footer />
+      <Toaster />
     </>
   );
 };

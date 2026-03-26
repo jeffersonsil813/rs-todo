@@ -1,4 +1,5 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 import useLocalStorage from "use-local-storage";
 import { delay } from "../helpers/utils";
 import { TASKS_KEY, TaskState, type Task } from "../models/task";
@@ -31,6 +32,7 @@ export const useTask = () => {
       ),
     );
 
+    toast.success("Tarefa salva com sucesso!");
     setIsUpdatingTask(false);
   };
 
@@ -46,6 +48,7 @@ export const useTask = () => {
 
     setTasks(tasks.filter((task) => task.id !== id));
 
+    toast.success("Tarefa deletada com sucesso!");
     setIsDeletingTask(false);
   };
 
