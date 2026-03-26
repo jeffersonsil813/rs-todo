@@ -48,7 +48,9 @@ export const useTask = () => {
 
     setTasks(tasks.filter((task) => task.id !== id));
 
-    toast.success("Tarefa deletada com sucesso!");
+    if (ms > 0) {
+      toast.success("Tarefa deletada com sucesso!");
+    }
     setIsDeletingTask(false);
   };
 
