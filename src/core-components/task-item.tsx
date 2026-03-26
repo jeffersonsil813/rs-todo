@@ -9,6 +9,7 @@ import Card from "../components/card";
 import InputCheckbox from "../components/input-checkbox";
 import InputText from "../components/input-text";
 import Text from "../components/text";
+import { useTask } from "../hooks/use-task";
 import { TaskState, type Task } from "../models/task";
 
 interface TaskItemProps {
@@ -19,7 +20,8 @@ const TaskItem = ({ task }: TaskItemProps) => {
   const [isEditing, setIsEditing] = useState(
     task?.state === TaskState.CREATING,
   );
-  const [taskTitle, setTaskTitle] = useState("");
+  const [taskTitle, setTaskTitle] = useState(task?.title || "");
+  const { updateTask } = useTask();
 
   const handleEdit = () => setIsEditing(true);
 
@@ -30,6 +32,7 @@ const TaskItem = ({ task }: TaskItemProps) => {
 
   const handleSaveTask = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
+    updateTask(task.id, { title: taskTitle });
     setIsEditing(false);
   };
 
@@ -61,6 +64,7 @@ const TaskItem = ({ task }: TaskItemProps) => {
             onChange={handleChangeTaskTitle}
             required
             autoFocus
+            value={taskTitle}
           />
           <div className="flex gap-1">
             <ButtonIcon

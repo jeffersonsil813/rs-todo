@@ -1,4 +1,4 @@
-import { TaskState } from "../models/task";
+import { TaskState, type Task } from "../models/task";
 import { useTasksData } from "./use-tasks-data";
 
 export const useTask = () => {
@@ -15,7 +15,18 @@ export const useTask = () => {
     ]);
   };
 
+  const updateTask = (id: string, payload: { title: Task["title"] }) => {
+    setTasks((prev) =>
+      (prev || []).map((task) =>
+        task.id === id
+          ? { ...task, state: TaskState.CREATED, ...payload }
+          : task,
+      ),
+    );
+  };
+
   return {
     prepareTask,
+    updateTask,
   };
 };
