@@ -1,73 +1,100 @@
-# React + TypeScript + Vite
+# ✅ ToDo List
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, fast, and locally persistent task management app — built with React and Vite.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📌 About the Project
 
-## React Compiler
+**ToDo List** is a web application for managing your daily tasks. You can create, view, and organize tasks in a simple and intuitive way, with data saved directly in the browser — no backend or database required.
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+---
 
-## Expanding the ESLint configuration
+## 🚀 Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- [Node.js](https://nodejs.org/) installed
+- `npm` or `yarn`
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Installation & Running
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+**With npm:**
+```bash
+npm i
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+**With yarn:**
+```bash
+yarn
+yarn dev
+```
+
+Then open [http://localhost:5173](http://localhost:5173) in your browser.
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology | Description |
+|---|---|
+| [React](https://react.dev/) | Main library for building the UI |
+| [Vite](https://vitejs.dev/) | Lightning-fast build tool for modern development |
+| [Tailwind CSS](https://tailwindcss.com/) | Utility-first styling directly in JSX |
+| [React Router](https://reactrouter.com/) | Client-side routing between pages |
+| [Class Variance Authority](https://cva.style/) | Type-safe component variant management |
+
+---
+
+## 💾 Highlight: `useLocalStorage`
+
+> One of the coolest parts of this project!
+
+Instead of manually accessing `localStorage` with `getItem`, `setItem`, and `JSON.parse` scattered across the codebase, the **`useLocalStorage`** hook was used — it wraps all that logic and exposes an interface identical to `useState`:
 
 ```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+const [tasks, setTasks] = useLocalStorage('tasks', [])
 ```
+
+That's it. Data persists across sessions with zero extra complexity. ✨
+
+---
+
+## 📁 Project Structure
+
+```
+RS-TODO/
+├── public/                  # Static public assets
+├── src/
+│   ├── assets/              # Images and static resources
+│   ├── components/          # Small, reusable atomic components
+│   ├── core-components/     # Larger components composed from smaller ones
+│   ├── helpers/             # Utility functions
+│   ├── hooks/               # Custom hooks (e.g. useLocalStorage)
+│   ├── models/              # TypeScript types and interfaces
+│   ├── pages/               # Application pages (consumed by React Router)
+│   ├── App.tsx              # Root component and route configuration
+│   ├── index.css            # Global styles
+│   └── main.tsx             # Application entry point
+├── index.html
+├── vite.config.ts
+└── package.json
+```
+
+---
+
+## 🧩 Component Architecture
+
+The project follows a **layered composition** approach:
+
+- **`components/`** — Small, atomic, and reusable pieces (buttons, inputs, badges, etc.)
+- **`core-components/`** — More complex components built by combining the smaller ones
+
+This separation keeps the codebase organized, makes maintenance easier, and encourages reuse — avoiding duplication and giving each piece a single, clear responsibility.
+
+---
+
+## 👤 Author
+
+Made with 💙 by me.
