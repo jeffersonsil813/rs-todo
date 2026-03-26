@@ -1,3 +1,4 @@
+import { TaskState } from "../models/task";
 import { useTasksData } from "./use-tasks-data";
 
 export const useTasks = () => {
@@ -5,7 +6,7 @@ export const useTasks = () => {
 
   return {
     tasks,
-    tasksCount: tasks.length,
+    createdTasksCount: tasks.filter((task) => task.state === TaskState.CREATED).length,
     concludedTasksCount: tasks.filter((task) => task.concluded).length,
   };
 };
