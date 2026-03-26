@@ -8,26 +8,34 @@ import ButtonIcon from "../components/button-icon";
 import Card from "../components/card";
 import InputCheckbox from "../components/input-checkbox";
 import InputText from "../components/input-text";
+import Skeleton from "../components/skeleton";
 import Text from "../components/text";
 import { useTask } from "../hooks/use-task";
 import { TaskState, type Task } from "../models/task";
 
 interface TaskItemProps {
   task: Task;
+  loading?: boolean;
 }
 
-const TaskItem = ({ task }: TaskItemProps) => {
+const TaskItem = ({ task, loading }: TaskItemProps) => {
   const [isEditing, setIsEditing] = useState(
     task?.state === TaskState.CREATING,
   );
   const [taskTitle, setTaskTitle] = useState(task?.title || "");
-  const { updateTask, updateTaskStatus, deleteTask } = useTask();
+  const {
+    updateTask,
+    updateTaskStatus,
+    deleteTask,
+    isDeletingTask,
+    isUpdatingTask,
+  } = useTask();
 
   const handleEdit = () => setIsEditing(true);
 
   const handleCancelEdit = () => {
     if (task.state === TaskState.CREATING) {
-      deleteTask(task.id);
+      deleteTask(task.id, 0);
       return;
     }
     setIsEditing(false);
@@ -36,9 +44,9 @@ const TaskItem = ({ task }: TaskItemProps) => {
   const handleChangeTaskTitle = (e: React.ChangeEvent<HTMLInputElement>) =>
     setTaskTitle(e.target.value || "");
 
-  const handleSaveTask = (e: React.SubmitEvent<HTMLFormElement>) => {
+  const handleSaveTask = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    updateTask(task.id, { title: taskTitle });
+    await updateTask(task.id, { title: taskTitle });
     setIsEditing(false);
   };
 
@@ -47,8 +55,8 @@ const TaskItem = ({ task }: TaskItemProps) => {
     updateTaskStatus(task.id, checked);
   };
 
-  const handleClickDeleteTask = () => {
-    deleteTask(task.id);
+  const handleClickDeleteTask = async () => {
+    await deleteTask(task.id);
   };
 
   return (
@@ -58,22 +66,30 @@ const TaskItem = ({ task }: TaskItemProps) => {
           <InputCheckbox
             checked={!!task?.concluded}
             onChange={handleChangeTaskStatus}
+            loading={loading}
           />
-          <Text className={cx("flex-1", { "line-through": task?.concluded })}>
-            {task?.title}
-          </Text>
+          {loading ? (
+            <Skeleton className="flex-1 h-6" />
+          ) : (
+            <Text className={cx("flex-1", { "line-through": task?.concluded })}>
+              {task?.title}
+            </Text>
+          )}
           <div className="flex gap-1">
             <ButtonIcon
               type="button"
               icon={TrashIcon}
               variant="tertiary"
               onClick={handleClickDeleteTask}
+              loading={loading}
+              handling={isDeletingTask}
             />
             <ButtonIcon
               type="button"
               icon={PencilIcon}
               variant="tertiary"
               onClick={handleEdit}
+              loading={loading}
             />
           </div>
         </div>
@@ -93,7 +109,11 @@ const TaskItem = ({ task }: TaskItemProps) => {
               variant="secondary"
               onClick={handleCancelEdit}
             />
-            <ButtonIcon icon={CheckIcon} type="submit" />
+            <ButtonIcon
+              icon={CheckIcon}
+              type="submit"
+              handling={isUpdatingTask}
+            />
           </div>
         </form>
       )}
